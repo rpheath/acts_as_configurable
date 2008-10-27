@@ -1,13 +1,9 @@
-ActsAsConfigurable
-==================
+h1. ActsAsConfigurable
 
-Introduction goes here.
+Adds dynamic configuration storage to any @ActiveRecord@ model.
 
+h2. Examples
 
-Example
-=======
+(see examples here)
 
-Example goes here.
-
-
-Copyright (c) 2008 [name of plugin creator], released under the MIT license
+Copyright (c) 2008 Ryan Heath and Chris Scharf, released under the MIT license
