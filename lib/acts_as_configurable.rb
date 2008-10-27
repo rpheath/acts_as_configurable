@@ -15,7 +15,7 @@ module RPH
       # end
       def acts_as_configurable(options = {})
         options = {
-          :method => 'configuration'
+          :with => 'configuration'
         }.merge!(options)
         
         class_inheritable_accessor :options
@@ -28,7 +28,7 @@ module RPH
     module ClassMethods
       # shortcut for accessing the configuration
       def method_missing(name, &block)
-        return Configuration.config(self.to_s, &block) if name.to_sym == options[:method].to_sym
+        return Configuration.config(self.to_s, &block) if name.to_sym == options[:with].to_sym
         super
       end
     end
