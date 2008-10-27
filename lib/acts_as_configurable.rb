@@ -2,6 +2,8 @@
   require File.join(File.dirname(__FILE__), 'acts_as_configurable', f)
 end
 
+# dynamic configuration/settings storage
+# for ActiveRecord models
 module RPH
   module ActsAsConfigurable
     def self.included(receiver)
@@ -9,10 +11,30 @@ module RPH
     end
     
     module ActMethods
-      # Example
-      # class API < ActiveRecord::Base
-      #   acts_as_configurable
-      # end
+      # Examples:
+      #   class API < ActiveRecord::Base
+      #     acts_as_configurable
+      #     
+      #     configuration do |config|
+      #       config.key = '123456'
+      #       config.user_id = '0001'
+      #     end
+      #   end
+      #   
+      #   $> API.configuration.key      # => '123456'
+      #   $> API.configuration.user_id  # => '0001'
+      #
+      #   class API < ActiveRecord::Base
+      #     acts_as_configurable :with => :settings
+      #
+      #     settings do |setting|
+      #       setting.key = '123456'
+      #       setting.user_id = '0001'
+      #     end
+      #   end
+      #
+      #   $> API.settings.key       # => '123456'
+      #   $> API.settings.user_id   # => '0001'
       def acts_as_configurable(options = {})
         options = {
           :with => 'configuration'
@@ -26,7 +48,9 @@ module RPH
     end
   
     module ClassMethods
-      # shortcut for accessing the configuration
+      # if the missing method matches the configuration
+      # method, return the configuration for that class;
+      # otherwise, call super to handle normal behavior
       def method_missing(name, &block)
         return Configuration.config(self.to_s, &block) if name.to_sym == options[:with].to_sym
         super
