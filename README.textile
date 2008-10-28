@@ -1,6 +1,6 @@
 h1. ActsAsConfigurable
 
-Rails plugin that adds dynamic (non-database) configuration to any @ActiveRecord@ model.
+Rails plugin that adds dynamic (non-database) configuration settings to any @ActiveRecord@ model.
 
 h2. Examples
 
@@ -53,5 +53,14 @@ Then just use "settings" in place of "configuration" when accessing the data.
 $> User.settings.passwords
 $> => {:min_length => 6, :max_length => 12}
 </code></pre>
+
+h2. Credits
+
+"Chris Scharf":http://tiny.scharfie.com is the original author of this "on-the-fly" configuration. 
+His original implementation was intended for application wide configuration settings. You can find
+his post about it "here":http://slateinfo.blogs.wvu.edu/blog/2007/10/29/custom-configuration-settings-made-easy. 
+
+With my version, you can have the convenience of his configuration, but exclusive to the class in 
+which it's contained. Plus it's now a plugin.
 
 (c) 2008 Ryan Heath and Chris Scharf, released under the MIT license
