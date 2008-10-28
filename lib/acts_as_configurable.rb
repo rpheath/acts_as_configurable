@@ -3,7 +3,7 @@
 end
 
 # dynamic configuration/settings storage
-# for ActiveRecord models
+# for models or classes
 module RPH
   module ActsAsConfigurable
     def self.included(receiver)
@@ -12,7 +12,7 @@ module RPH
     
     module ActMethods
       # Examples:
-      #   class API < ActiveRecord::Base
+      #   class API
       #     acts_as_configurable
       #     
       #     configuration do |config|
@@ -24,7 +24,7 @@ module RPH
       #   $> API.configuration.key      # => '123456'
       #   $> API.configuration.user_id  # => '0001'
       #
-      #   class API < ActiveRecord::Base
+      #   class API
       #     acts_as_configurable :with => :settings
       #
       #     settings do |setting|

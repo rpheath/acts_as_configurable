@@ -2,11 +2,9 @@ require 'rubygems'
 require 'active_support'
 require File.join(File.dirname(__FILE__), '..', 'lib', 'acts_as_configurable')
 
-class MockActiveRecord
-  include RPH::ActsAsConfigurable
-end
+Object.send :include, RPH::ActsAsConfigurable
 
-class Settings1 < MockActiveRecord
+class Settings1
   acts_as_configurable
   
   configuration do |config|
@@ -15,7 +13,7 @@ class Settings1 < MockActiveRecord
   end
 end
 
-class Settings2 < MockActiveRecord
+class Settings2
   acts_as_configurable
   
   configuration do |config|
@@ -24,7 +22,7 @@ class Settings2 < MockActiveRecord
   end
 end
 
-class Settings3 < MockActiveRecord
+class Settings3
   acts_as_configurable :with => :configurator
   
   configurator do |config|
@@ -32,7 +30,7 @@ class Settings3 < MockActiveRecord
   end
 end
 
-class Settings4 < MockActiveRecord
+class Settings4
   acts_as_configurable :with => :configurator
   
   configurator do |config|
@@ -41,6 +39,6 @@ class Settings4 < MockActiveRecord
 end
 
 
-class Blank < MockActiveRecord
+class Blank
   acts_as_configurable
 end
