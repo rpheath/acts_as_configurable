@@ -56,8 +56,8 @@ $> => {:min_length => 6, :max_length => 12}
 
 h2. Dependencies
 
-This plugin mixes directly into @Object@, so there's no dependency on another library. Any class can
-act as configurable.
+This plugin mixes directly into @Object@, so there's no dependency on another library. While the 
+examples above are all @ActiveRecord@ models, any class can act as configurable.
 
 Actually, @ActiveSupport@ is required (thanks to @class_inheritable_accessor@), but since this is a 
 plugin for a Rails application, there shouldn't be any issues there.
