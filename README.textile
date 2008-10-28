@@ -54,6 +54,26 @@ $> User.settings.passwords
 $> => {:min_length => 6, :max_length => 12}
 </code></pre>
 
+h2. Nested configuration
+
+You can also nest configuration settings to keep things grouped nicely.
+
+<pre><code>
+class User < ActiveRecord::Base
+  acts_as_configurable
+  
+  configuration do |config|
+    config.passwords do |p|
+      p.min_length = 6
+      p.max_length = 12
+    end
+    config.accounts do |a|
+      # ...
+    end
+  end
+end
+</code></pre>
+
 h2. Dependencies
 
 This plugin mixes directly into @Object@, so there's no dependency on another library. While the 
