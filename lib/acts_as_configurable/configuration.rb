@@ -1,3 +1,8 @@
+# ==========================================================================================
+# The Configuration class was originally written by Chris Scharf (http://tiny.scharfie.com);
+# You can find his original post about it on the slate blog.
+# (http://slateinfo.blogs.wvu.edu/blog/2007/10/29/custom-configuration-settings-made-easy)
+# ==========================================================================================
 module RPH
   module ActsAsConfigurable
     module ClassMethods
