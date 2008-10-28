@@ -1,9 +1,57 @@
 h1. ActsAsConfigurable
 
-Adds dynamic configuration storage to any @ActiveRecord@ model.
+Rails plugin that adds dynamic (non-database) configuration to any @ActiveRecord@ model.
 
 h2. Examples
 
-(see examples here)
+Basic usage:
 
-Copyright (c) 2008 Ryan Heath and Chris Scharf, released under the MIT license
+<pre><code>
+class User < ActiveRecord::Base
+  acts_as_configurable
+  
+  configuration do |config|
+    config.passwords.min_length = 6
+    config.passwords.max_length = 12  
+  end
+end
+</code></pre>
+
+And then to access that configuration, simply call:
+
+<pre><code>
+$> User.configuration
+$> => {:passwords => { :min_length => 6, :max_length => 12 }}
+</code></pre>
+
+Or just keep going down the chain to get to the specifics:
+
+<pre><code>
+$> User.configuration.passwords
+$> => {:min_length => 6, :max_length => 12}
+$> User.configuration.passwords.min_length
+$> => 6
+</code></pre>
+
+Now, granted that a "configuration" class method is common enough that there may be a case
+where you have a conflict. Well, you can also configure that part:
+
+<pre><code>
+class User < ActiveRecord::Base
+  acts_as_configurable :with => :settings
+  
+  settings do |setting|
+    setting.passwords.min_length = 6
+    setting.passwords.max_length = 12
+  end
+end
+</code></pre>
+
+Then just use "settings" in place of "configuration" when accessing the data.
+
+<pre><code>
+$> User.settings.passwords
+$> => {:min_length => 6, :max_length => 12}
+</code></pre>
+
+(c) 2008 Ryan Heath and Chris Scharf, released under the MIT license
